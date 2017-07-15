@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h3>Channels</h3>
+    </div>
+  </div>
+</div>
+<form id="channelsform" name="channelsform">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">       
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Lineup Channel</th>
+            <th>Station ID</th>
+            <th>Callsign</th>
+            <th>Lineup ID</th>
+            <th>Profiles</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each channels}}
+          <tr>
+            <td><input type="text" class="form-control" id="{{lineupId}}|{{stationId}}" name="{{lineupId}}|{{stationId}}" placeholder="{{channel}}" value={{channel}}></td>
+            <td>{{lineupChannel}}</td>
+            <td>{{stationId}}</td>
+            <td>{{callSign}}</td>
+            <td>{{lineupId}}</td>
+            <td>
+              {{#each ../profiles}}
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="{{../lineupId}}|{{../stationId}}|{{title}}" name="{{../lineupId}}|{{../stationId}}|{{title}}" {{#contains title ../profileTitles}}checked{{/contains}}> {{title}}
+                  </label>
+                </div>
+              {{/each}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="submit" class="btn btn-primary">Save</button>
+<a class="btn btn-default" href="/config/#" role="button">Cancel</a>
+      
+</form>

@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-2">
+    <div class="text-left">
+      {{#formatDate date 'ddd MM/DD/YYYY'}}{{/formatDate}} 
+    </div>
+  </div>
+  {{#each guideHeaders}}
+  <div class="col-md-2">
+    <div class="text-left">
+      {{#formatDate this 'hh:mm a'}}{{/formatDate}} 
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+{{#each airings}}
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-2">
+    <div class="text-left">
+      {{@key}}
+    </div>
+  </div>
+  {{#each this}}
+  <div class="col-md-1" style="width:{{guideWidthPercent}}%;">
+    <div class="text-left">
+      {{title}}
+    </div>
+  </div>
+  {{/each}}
+</div>
+{{/each}}

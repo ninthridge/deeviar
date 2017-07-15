@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h3>Devices</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Model</th>
+            <th>Status</th>
+            <th>Stations</th>
+            <th>Lineup</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each devices}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{hwmodel}}</td>
+            <td>{{status}}</td>
+            <td>{{stations.length}}</td>
+            <td>{{lineupId}}</td>
+            <td align="right">
+              {{#equals status "Available"}}
+                <a class="btn btn-primary" href="/config/#devices/{{id}}/scan" role="button">Rescan</a>
+                <a class="btn btn-primary" href="/config/#devices/{{id}}/lineup" role="button">Select Lineup</a>
+              {{/equals}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <a class="btn btn-primary" href="#devices/!add" role="button">Add</a>
+  </div>
+</div>

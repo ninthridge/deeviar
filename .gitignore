@@ -1,0 +1,9 @@
+bin/
+target/
+.classpath
+.externalToolBuilders/
+.settings/
+.DS_Store
+.project
+maven-eclipse.xml
+hs_err_pid*

@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h3>Library Import Category</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+      <form id="libraryimportcategoryform" name="libraryimportcategoryform" role="form">
+      
+      <input type="hidden" id="title" name="title" value="{{title}}">
+      
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" id="category" name="category" placeholder="Category" {{#if category}}value="{{category}}" readonly{{/if}}>
+      </div>
+      
+      <div id="locationscontainer" class="form-group">
+        <label for="location">Locations</label>
+        {{#if locations}}
+          {{#each locations}}
+            <div>
+              <div class="col-xs-11">
+                <input type="text" class="form-control" name="location" placeholder="File system or smb location" value="{{this}}">
+              </div>
+              <div class="col-xs-1">
+                <button type="button" class="btn btn-danger">X</button>
+              </div>
+            </div>
+          {{/each}}
+        {{else}}
+          <div>
+            <div class="col-xs-11">
+              <input type="text" class="form-control" name="location" placeholder="File system or smb location">
+            </div>
+            <div class="col-xs-1">
+              <button type="button" class="btn btn-danger">X</button>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" id="addlocationbutton" name="addlocationbutton" class="btn btn-default">Add</button>
+      <a class="btn btn-default" href="/config/#profiles/{{title}}/libraryimports" role="button">Cancel</a>
+    </form>
+  </div>
+</div>

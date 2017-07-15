@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-xs-12 center-block text-center">
+    {{#if timers}}
+    <div class="table-responsive">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Station</th>
+            <th>Title</th>
+            <th>Date / Time</th>
+            <th>Minutes</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each timers}}
+          <tr>
+            <td>{{callSign}}</td>
+            <td>{{title}}</td>
+            <td>
+              {{#if date}}
+                {{#formatDate date 'ddd MM/DD/YYYY hh:mm A'}}{{/formatDate}} 
+              {{/if}}
+              {{#each daysOfWeek}}
+                {{#formatDayOfWeek this}}{{/formatDayOfWeek}}
+              {{/each}}
+              {{#if startTime}}
+                {{#formatTime startTime.hours startTime.minutes}}{{/formatTime}}
+              {{/if}}
+            </td>
+            <td>
+              {{#if duration}}
+                {{#formatDuration duration}}{{/formatDuration}}
+              {{/if}}
+            </td>
+            <td align="right">
+              <a class="btn btn-danger" href="/#timers/{{id}}/!delete" role="button" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    {{else}}
+      No timers found
+    {{/if}}
+  </div>
+</div>

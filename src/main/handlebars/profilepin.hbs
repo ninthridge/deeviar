@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h3>Profile Pin</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <form id="profilepinform" name="profilepinform">
+  
+      <input type="hidden" id="title" name="title" value="{{title}}">
+      
+      <div class="form-group">
+        <label for="pin">Pin</label>
+        <input type="password" class="form-control" id="pin" name="pin" placeholder="Pin">
+      </div>
+      <div class="form-group">
+        <label for="verifypin">Verify Pin</label>
+        <input type="password" class="form-control" id="verifypin" name="verifypin" placeholder="Verify Pin">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a class="btn btn-default" href="/config/#" role="button">Cancel</a>
+    </form>
+  </div>
+</div>

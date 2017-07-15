@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h3>Grabber Configuration</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <form id="grabberconfigform" name="grabberconfigform" role="form">
+      <div class="form-group">
+        <label for="provider">Provider</label>
+        <select class="form-control" id="provider" name="provider">
+          <option value="SchedulesDirect">Schedules Direct</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{username}}">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password" name="password" placeholder="Password" value="{{password}}">
+      </div>
+
+      <div class="form-group">
+        <label for="postalCode">Zip / Postal Code</label>
+        <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="postalCode" value="{{postalCode}}">
+      </div>
+
+      <input type="hidden" id="countryCode" name="countryCode" value="USA">
+
+      <button type="submit" class="btn btn-primary">Retrieve Lineups</button>
+      <a class="btn btn-default" href="/config/#devices" role="button">Cancel</a>
+    </form>
+  </div>
+</div>

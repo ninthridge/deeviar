@@ -1,0 +1,25 @@
+<div class="row">
+  {{#if stations}}
+    {{#each stations}}
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="height:270px">
+        <div class="row">
+          <div class="col-xs-12 center-block text-center">
+            <h4>{{title}}</h4>
+          </div>
+        </div>
+        <div class="row center-block text-center ">
+          <div class="col-xs-12 center-block text-center">
+            <a href="/streamingplayer/#tv/stations/{{id}}"><img height="150" src="{{hdPosterUri}}"></a>
+          </div>
+        </div>
+        <div class="row center-block text-center ">
+          <div class="col-xs-12 center-block text-center">
+            <h4>{{description}}</h4>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    No stations found
+  {{/if}}  
+</div>

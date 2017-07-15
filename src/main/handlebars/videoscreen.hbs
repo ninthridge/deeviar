@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h3>{{video.title}}</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+    <video controls poster="{{video.hdPosterUri}}" {{#if dimensions.height}}height="{{dimensions.height}}"{{else}}height="200"{{/if}} class="video-js vjs-default-skin">
+      <source src="{{video.streams.0.uri}}" type="video/mp4" />
+      Your browser does not support video.
+    </video>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+    <div class="row">
+      <div class="col-xs-12">
+        {{video.description}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <a class="btn btn-default" href="/#library/videos/{{video.id}}/subtitles" role="button">Subtitles</a>
+    <a class="btn btn-default" href="/#library" role="button">Cancel</a>
+    <a class="btn btn-danger" href="/#library/videos/{{video.id}}/!delete" role="button" onclick="return confirm('Are you sure?')">Delete</a>
+  </div>
+</div>

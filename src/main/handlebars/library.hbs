@@ -1,0 +1,37 @@
+{{#if categories}}
+<div class="row">
+  <div class="col-xs-12 center-block text-center">
+    <ul class="nav nav-pills">
+      {{#each categories}}
+        <li {{#equals this ../category}}class="active"{{/equals}}><a href="/#library/categories/{{this}}">{{this}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    &nbsp;
+  </div>
+</div>
+{{/if}}
+
+{{#if contents}}
+<div class="row center-block text-center ">
+  {{#each contents}}
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 center-block text-center" style="height:230px">
+      {{#if episodes}}
+        <a href="/#library/series/{{id}}"><img height="150" src="{{hdPosterUri}}"></a></br><h4>{{title}}</h4>
+      {{else}}
+        <a href="/videoplayer/#library/videos/{{id}}"><img height="150" src="{{hdPosterUri}}"></a></br><h4>{{title}}</h4>
+      {{/if}}  
+    </div>
+  {{/each}}
+</div>
+{{else}}
+<div class="row">
+  <div class="col-xs-12 center-block text-center">
+    No content found
+  </div>
+</div>
+{{/if}}

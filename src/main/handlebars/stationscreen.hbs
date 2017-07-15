@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div>
+      <h3>{{station.title}}</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 center-block text-center">
+    <video id="streamingplayer" controls width="{{width}}" class="video-js vjs-default-skin">
+      <source src="{{streamContent.uri}}" type="application/x-mpegURL" />
+      Your browser does not support video.
+    </video>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <a class="btn btn-default" href="/#tv" role="button">Cancel</a>
+  </div>
+</div>

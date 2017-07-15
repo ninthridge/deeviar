@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h3>Profiles</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each profiles}}
+          <tr>
+            <td><a href="/config/#profiles/{{title}}/image"><img height="100" src={{hdPosterUri}}></a></td>
+            <td>{{title}}</td>
+            <td align="right">
+              <a class="btn btn-primary" href="/config/#profiles/{{title}}/pin" role="button">Pin</a>
+              <a class="btn btn-primary" href="/config/#profiles/{{title}}/permissions" role="button">Permissions</a>
+              <a class="btn btn-primary" href="/config/#profiles/{{title}}/libraryimports" role="button">Import Locations</a>
+              <a class="btn btn-danger" href="/config/#profiles/{{title}}/!delete" role="button" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <a class="btn btn-primary" href="#profiles/!new" role="button">New</a>
+  </div>
+</div>

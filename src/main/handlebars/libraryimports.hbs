@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h3>Library Import</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="table-responsive">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Locations</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each libraryImportLocations}}
+          <tr>
+            <td>{{@key}}</td>
+            <td>
+              {{#each this}}
+                {{this}}
+              {{/each}}
+            </td>
+            <td align="right">
+              <a class="btn btn-primary" href="/config/#profiles/{{../title}}/libraryimports/{{@key}}" role="button">Edit</a>
+              <a class="btn btn-danger" href="/config/#profiles/{{../title}}/libraryimports/{{@key}}/!delete" role="button" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <a class="btn btn-primary" href="/config/#profiles/{{title}}/libraryimports/!new" role="button">New</a>
+    <a class="btn btn-default" href="/config/#profiles" role="button">Cancel</a>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="text-center">
+      <h3>Upload Subtitle Track</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <form id="subtitletrackform" name="subtitletrackform" enctype="multipart/form-data">
+      
+      <input type="hidden" id="videoId" name="videoId" value="{{videoId}}">
+      
+      <div class="form-group">
+        <label for="language">Language</label>
+        <select class="form-control" id="language" name="language">
+          <option value="eng" selected>English</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="title">Description</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="English">
+      </div>
+      
+      <div class="form-group">
+        <label for="subtitletrackfile">Subtitle Track File</label>
+        <input type="file" class="form-control" id="subtitletrackfile" name="subtitletrackfile">
+      </div>
+      
+      <h3>Or</h3>
+      
+      <div class="form-group">
+        <label for="title">Subtitle Track URL</label>
+        <input type="text" class="form-control" id="url" name="url" placeholder="URL">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a class="btn btn-default" href="/#library/videos/{{videoId}}/subtitles" role="button">Cancel</a>
+    </form>
+  </div>
+</div>
