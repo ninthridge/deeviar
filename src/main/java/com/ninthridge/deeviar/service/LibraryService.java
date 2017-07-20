@@ -321,8 +321,10 @@ public class LibraryService {
       Episode episode = (Episode) videoContent;
       Series series = findSeriesById(profileTitle, episode.getSeriesId());
       if (series != null) {
+        series.getEpisodes().remove(episode);
         series.getEpisodes().add(episode);
         episodeRepository.save(profileTitle, episode);
+        seriesRepository.save(profileTitle, series);
         log.info("Saved " + episode.getTitle());
       }
     } else if (videoContent instanceof Video) {
