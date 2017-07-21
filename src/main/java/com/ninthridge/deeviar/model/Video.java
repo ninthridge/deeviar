@@ -16,7 +16,6 @@ public class Video extends VideoContent implements Serializable {
   private List<VideoStream> streams;
   private String hdBifUri;
   private String sdBifUri;
-  @JsonProperty("bookmarkposition")
   private Integer bookmarkPosition;
   private Date bookmarkDate;
   private Boolean watched = false;
