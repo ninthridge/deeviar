@@ -19,12 +19,11 @@ public abstract class CachedJsonRepository<T> extends BaseJsonRepository<T> {
   
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
  
-  private boolean initialized = false;
-  
   protected abstract String getFileName();
 
   public CachedJsonRepository(TypeReference<T> typeReference) {
     super(typeReference);
+    initialize();
   }
   
   private void initialize() {
@@ -38,15 +37,12 @@ public abstract class CachedJsonRepository<T> extends BaseJsonRepository<T> {
         log.error(e, e);
       }
     }
-    initialized = true;
   }
 
   public void save(T content) {
+    log.info(getClass() + " save");
     try {
       lock.writeLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       this.cache = content;
       File file = getFile();
       writeFile(file, content);
@@ -59,11 +55,9 @@ public abstract class CachedJsonRepository<T> extends BaseJsonRepository<T> {
   }
 
   public T get() {
+    log.info(getClass() + " get");
     try {
       lock.readLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       return cache;
     } finally {
       lock.readLock().unlock();
@@ -71,11 +65,9 @@ public abstract class CachedJsonRepository<T> extends BaseJsonRepository<T> {
   }
   
   public void delete() {
+    log.info(getClass() + " delete");
     try {
       lock.writeLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       cache = null;
       deleteFile(getFile());
       timestamp = new Date();

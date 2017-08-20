@@ -23,13 +23,12 @@ public abstract class CachedMultiJsonRepository<T> extends BaseJsonRepository<T>
   
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   
-  private boolean initialized = false;
-  
   protected abstract String getDirName();
   protected abstract String getId(T content);
   
   public CachedMultiJsonRepository(TypeReference<T> typeReference) {
     super(typeReference);
+    initialize();
   }
   
   private void initialize() {
@@ -50,15 +49,12 @@ public abstract class CachedMultiJsonRepository<T> extends BaseJsonRepository<T>
         }
       }
     }
-    initialized = true;
   }
   
   public void save(T content) {
+    log.info(getClass() + " save " + getId(content));
     try {
       lock.writeLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       cache.put(getId(content), content);
       File file = getFile(getId(content));
       writeFile(file, content);
@@ -71,11 +67,9 @@ public abstract class CachedMultiJsonRepository<T> extends BaseJsonRepository<T>
   }
   
   public void delete(String id) {
+    log.info(getClass() + " delete " + id);
     try {
       lock.writeLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       cache.remove(id);
       deleteFile(getFile(id));
       timestamp = new Date();
@@ -85,11 +79,9 @@ public abstract class CachedMultiJsonRepository<T> extends BaseJsonRepository<T>
   }
   
   public T get(String id) {
+    log.info(getClass() + " get " + id);
     try {
       lock.readLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       return cache.get(id);
     } finally {
       lock.readLock().unlock();
@@ -97,11 +89,9 @@ public abstract class CachedMultiJsonRepository<T> extends BaseJsonRepository<T>
   }
   
   public SortedSet<T> getAll() {
+    log.info(getClass() + " getAll");
     try {
       lock.readLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       SortedSet<T> set = new TreeSet<>();
       for(String key : cache.keySet()) {
         set.add(cache.get(key));

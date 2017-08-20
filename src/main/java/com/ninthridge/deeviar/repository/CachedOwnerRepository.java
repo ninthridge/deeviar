@@ -16,6 +16,7 @@ public abstract class CachedOwnerRepository<T> {
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   
   public void save(String profileTitle, T content) {
+    log.info(getClass() + " save " + " " + profileTitle);
     try {
       lock.writeLock().lock();
       cache.put(profileTitle, content);
@@ -25,6 +26,7 @@ public abstract class CachedOwnerRepository<T> {
   }
   
   public T get(String profileTitle) {
+    log.info(getClass() + " get " + profileTitle);
     try {
       lock.readLock().lock();
       return cache.get(profileTitle);
@@ -34,6 +36,7 @@ public abstract class CachedOwnerRepository<T> {
   }
   
   public void delete(String profileTitle) {
+    log.info(getClass() + " delete " + profileTitle);
     try {
       lock.writeLock().lock();
       cache.remove(profileTitle);

@@ -20,6 +20,7 @@ public abstract class CachedMultiRepository<T> {
   protected abstract String getId(T content);
   
   public void save(T content) {
+    log.info(getClass() + " save " + getId(content));
     try {
       lock.writeLock().lock();
       cache.put(getId(content), content);
@@ -29,6 +30,7 @@ public abstract class CachedMultiRepository<T> {
   }
   
   public T get(String id) {
+    log.info(getClass() + " get " + id);
     try {
       lock.readLock().lock();
       return cache.get(id);
@@ -38,6 +40,7 @@ public abstract class CachedMultiRepository<T> {
   }
   
   public SortedSet<T> getAll() {
+    log.info(getClass() + " getAll");
     try {
       lock.readLock().lock();
       SortedSet<T> set = new TreeSet<>();
@@ -51,6 +54,7 @@ public abstract class CachedMultiRepository<T> {
   }
   
   public void delete(String id) {
+    log.info(getClass() + " delete " + id);
     try {
       lock.writeLock().lock();
       cache.remove(id);

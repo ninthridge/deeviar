@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -19,6 +21,8 @@ import com.ninthridge.deeviar.util.UniqueIdentifierGenerator;
 
 public abstract class BaseJsonRepository<T> {
   
+  protected final Log log = LogFactory.getLog(getClass());
+
   private static ObjectMapper mapper;
   
   protected static FileFilter jsonFileFilter = new FileFilter() {
@@ -45,6 +49,7 @@ public abstract class BaseJsonRepository<T> {
   }
   
   protected void writeFile(File file, T content) throws IOException {
+    log.info(getClass() + " writeFile " + file.toString());
     if(!file.getParentFile().exists()) {
       file.getParentFile().mkdirs();
     }
@@ -54,6 +59,7 @@ public abstract class BaseJsonRepository<T> {
   }
   
   protected T readFile(File file) throws IOException {
+    log.info(getClass() + " readFile " + file.toString());
     if(file.exists()) {
       return mapper.readValue(file, typeReference);
     }
@@ -63,6 +69,7 @@ public abstract class BaseJsonRepository<T> {
   }
   
   protected void deleteFile(File file) {
+    log.info(getClass() + " deleteFile " + file.toString());
     if(file.exists()) {
       file.delete();
     }
