@@ -381,11 +381,11 @@ public class LibraryService {
         movieRepository.delete(profileTitle, id);
       }
       else if (video instanceof Episode) {
+        episodeRepository.delete(profileTitle, id);
         String seriesId = ((Episode) video).getSeriesId();
         if (seriesId != null) {
           Series series = findSeriesById(profileTitle, seriesId);
           if (series != null) {
-            episodeRepository.delete(profileTitle, id);
             series.getEpisodes().remove(video);
             if(series.getEpisodes() == null || series.getEpisodes().isEmpty()) {
               seriesRepository.delete(profileTitle, series.getId());

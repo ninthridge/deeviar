@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -19,14 +21,13 @@ public abstract class CachedJsonRepository<T> extends BaseJsonRepository<T> {
   
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
  
-  private boolean initialized = false;
-  
   protected abstract String getFileName();
 
   public CachedJsonRepository(TypeReference<T> typeReference) {
     super(typeReference);
   }
   
+  @PostConstruct
   private void initialize() {
     File file = getFile();
     if (file.exists()) {
@@ -38,15 +39,11 @@ public abstract class CachedJsonRepository<T> extends BaseJsonRepository<T> {
         log.error(e, e);
       }
     }
-    initialized = true;
   }
 
   public void save(T content) {
     try {
       lock.writeLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       this.cache = content;
       File file = getFile();
       writeFile(file, content);
@@ -61,9 +58,6 @@ public abstract class CachedJsonRepository<T> extends BaseJsonRepository<T> {
   public T get() {
     try {
       lock.readLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       return cache;
     } finally {
       lock.readLock().unlock();
@@ -73,9 +67,6 @@ public abstract class CachedJsonRepository<T> extends BaseJsonRepository<T> {
   public void delete() {
     try {
       lock.writeLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       cache = null;
       deleteFile(getFile());
       timestamp = new Date();

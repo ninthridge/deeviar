@@ -9,6 +9,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -23,8 +25,6 @@ public abstract class CachedOwnerMultiJsonRepository<T> extends BaseJsonReposito
   
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   
-  private boolean initialized = false;
-  
   protected abstract String getDirName();
   protected abstract String getId(T content);
   
@@ -32,6 +32,7 @@ public abstract class CachedOwnerMultiJsonRepository<T> extends BaseJsonReposito
     super(typeReference);
   }
   
+  @PostConstruct
   protected void initialize() {
     File profilesDir = config.getProfilesDir();
     if(profilesDir != null && profilesDir.exists()) {
@@ -60,15 +61,11 @@ public abstract class CachedOwnerMultiJsonRepository<T> extends BaseJsonReposito
         }
       }
     }      
-    initialized = true;
   }
   
   public void save(String profileTitle, T content) {
     try {
       lock.writeLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       if(cache.get(profileTitle) == null) {
         cache.put(profileTitle, new HashMap<String, T>());
       }
@@ -87,9 +84,6 @@ public abstract class CachedOwnerMultiJsonRepository<T> extends BaseJsonReposito
   public void delete(String profileTitle, String id) {
     try {
       lock.writeLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       if(cache.get(profileTitle) != null) {
         cache.get(profileTitle).remove(id);
         deleteFile(fileName(profileTitle, id));
@@ -103,9 +97,6 @@ public abstract class CachedOwnerMultiJsonRepository<T> extends BaseJsonReposito
   public T get(String profileTitle, String id) {
     try {
       lock.readLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       if(cache.get(profileTitle) != null) {
         return cache.get(profileTitle).get(id);
       }
@@ -118,9 +109,6 @@ public abstract class CachedOwnerMultiJsonRepository<T> extends BaseJsonReposito
   public SortedSet<T> getAll(String profileTitle) {
     try {
       lock.readLock().lock();
-      if(!initialized) {
-        initialize();
-      }
       SortedSet<T> set = new TreeSet<>();
       if(cache.get(profileTitle) != null) {
         for(String key : cache.get(profileTitle).keySet()) {
