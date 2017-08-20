@@ -654,8 +654,11 @@ public class LibraryService {
   }
 
   public String getRelativeSeriesDir(String profileTitle, Series series) {
-    return File.separator + profileTitle + File.separator + "Series" + File.separator
-        + TitleUtil.cleanse(series.getTitle());
+    String dirName = TitleUtil.cleanse(series.getTitle());
+    if (series.getYear() != null) {
+      dirName += " (" + series.getYear() + ")";
+    }
+    return File.separator + profileTitle + File.separator + "Series" + File.separator + dirName;
   }
 
   public String getRelativeMovieFile(String profileTitle, Movie movie) {
@@ -675,6 +678,9 @@ public class LibraryService {
     String seriesDir = getRelativeSeriesDir(profileTitle, series);
 
     String fileName = TitleUtil.cleanse(series.getTitle());
+    if (series.getYear() != null) {
+      fileName += " (" + series.getYear() + ")";
+    }
     if (episode.getSeason() != null && episode.getEpisode() != null) {
       fileName += " - S" + String.format("%02d", episode.getSeason()) + "E"
           + String.format("%02d", episode.getEpisode());
