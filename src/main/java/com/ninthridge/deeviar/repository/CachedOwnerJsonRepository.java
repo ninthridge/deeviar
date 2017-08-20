@@ -23,11 +23,12 @@ public abstract class CachedOwnerJsonRepository<T> extends BaseJsonRepository<T>
   
   private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   
+  private boolean initialized = false;
+  
   protected abstract String getFileName();
   
   public CachedOwnerJsonRepository(TypeReference<T> typeReference) {
     super(typeReference);
-    initialize();
   }
   
   private void initialize() {
@@ -53,12 +54,15 @@ public abstract class CachedOwnerJsonRepository<T> extends BaseJsonRepository<T>
         }
       } 
     }
+    initialized = true;
   }
   
   public void save(String profileTitle, T content) {
-    log.info(getClass() + " save " + profileTitle);
     try {
       lock.writeLock().lock();
+      if(!initialized) {
+        initialize();
+      }
       cache.put(profileTitle, content);
       File file = getFile(profileTitle);
       writeFile(file, content);
@@ -71,9 +75,11 @@ public abstract class CachedOwnerJsonRepository<T> extends BaseJsonRepository<T>
   }
   
   public T get(String profileTitle) {
-    log.info(getClass() + " get " + profileTitle);
     try {
       lock.readLock().lock();
+      if(!initialized) {
+        initialize();
+      }
       return cache.get(profileTitle);
     } finally {
       lock.readLock().unlock();
@@ -81,9 +87,11 @@ public abstract class CachedOwnerJsonRepository<T> extends BaseJsonRepository<T>
   }
   
   public SortedSet<T> getAll() {
-    log.info(getClass() + " getAll");
     try {
       lock.readLock().lock();
+      if(!initialized) {
+        initialize();
+      }
       SortedSet<T> set = new TreeSet<>();
       for(String key : cache.keySet()) {
         set.add(cache.get(key));
@@ -95,9 +103,11 @@ public abstract class CachedOwnerJsonRepository<T> extends BaseJsonRepository<T>
   }
   
   public void delete(String profileTitle) {
-    log.info(getClass() + " delete " + profileTitle);
     try {
       lock.writeLock().lock();
+      if(!initialized) {
+        initialize();
+      }
       cache.remove(profileTitle);
       deleteFile(getFile(profileTitle));
       timestamps.put(profileTitle, new Date());

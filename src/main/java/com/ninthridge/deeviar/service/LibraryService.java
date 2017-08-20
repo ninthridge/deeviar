@@ -319,12 +319,10 @@ public class LibraryService {
       log.info("Saved " + series.getTitle());
     } else if (videoContent instanceof Episode) {
       Episode episode = (Episode) videoContent;
-      episodeRepository.save(profileTitle, episode);
       Series series = findSeriesById(profileTitle, episode.getSeriesId());
       if (series != null) {
-        series.getEpisodes().remove(episode);
         series.getEpisodes().add(episode);
-        seriesRepository.save(profileTitle, series);
+        episodeRepository.save(profileTitle, episode);
         log.info("Saved " + episode.getTitle());
       }
     } else if (videoContent instanceof Video) {
@@ -383,14 +381,14 @@ public class LibraryService {
         movieRepository.delete(profileTitle, id);
       }
       else if (video instanceof Episode) {
-        episodeRepository.delete(profileTitle, id);
         String seriesId = ((Episode) video).getSeriesId();
         if (seriesId != null) {
           Series series = findSeriesById(profileTitle, seriesId);
           if (series != null) {
+            episodeRepository.delete(profileTitle, id);
             series.getEpisodes().remove(video);
             if(series.getEpisodes() == null || series.getEpisodes().isEmpty()) {
-              seriesRepository.delete(profileTitle, seriesId);
+              seriesRepository.delete(profileTitle, series.getId());
               if (series.getHdPosterUri() != null) {
                 FileUtil.deleteFile(new File(config.getImagesDir().getParentFile(), series.getHdPosterUri()));
               }
