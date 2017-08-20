@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
@@ -21,7 +22,11 @@ public class FileUtil {
           deleteRecursively(f);
         }
       }
-      file.delete();
+      try {
+        Files.deleteIfExists(file.toPath());
+      } catch (IOException e) {
+        log.error(e, e);
+      }
     }
   }
 
@@ -36,8 +41,10 @@ public class FileUtil {
   }
   
   public static void deleteFile(File file) {
-    if(file.exists()) {
-      file.delete();
+    try {
+      Files.deleteIfExists(file.toPath());
+    } catch (IOException e) {
+      log.error(e, e);
     }
   }
   
