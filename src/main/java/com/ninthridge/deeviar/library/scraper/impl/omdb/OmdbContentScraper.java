@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -87,15 +85,16 @@ public class OmdbContentScraper {
   }
   
   protected void populateContent(VideoContent content, OmdbVideo omdbVideo) {
-    content.setTitle(omdbVideo.getTitle());
+    //Not updating title and year since they would modify the id value
+    //content.setTitle(omdbVideo.getTitle());
+    //if(omdbVideo.getYear() != null) {
+    //  Pattern pattern = Pattern.compile("[0-9]+");
+    //  Matcher m = pattern.matcher(omdbVideo.getYear());
+    //  if (m.find()) {
+    //    content.setYear(new Integer(m.group(0)));
+    //  }
+    //}
     content.setImdbId(omdbVideo.getImdbId());
-    if(omdbVideo.getYear() != null) {
-      Pattern pattern = Pattern.compile("[0-9]+");
-      Matcher m = pattern.matcher(omdbVideo.getYear());
-      if (m.find()) {
-        content.setYear(new Integer(m.group(0)));
-      }
-    }
     content.setExternalPosterUrl(omdbVideo.getPoster());
     content.setDescription(omdbVideo.getPlot());
     content.setRated(omdbVideo.getRated());

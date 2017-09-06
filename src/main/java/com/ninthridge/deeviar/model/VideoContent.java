@@ -8,6 +8,7 @@ public abstract class VideoContent extends Content implements Serializable, Comp
   private static final long serialVersionUID = 1L;
 
   private String imdbId;
+  private Integer tmdbId;
   private Integer year;
   private String rated;
   private String category;
@@ -19,6 +20,14 @@ public abstract class VideoContent extends Content implements Serializable, Comp
 
   public void setImdbId(String imdbId) {
     this.imdbId = imdbId;
+  }
+
+  public Integer getTmdbId() {
+    return tmdbId;
+  }
+
+  public void setTmdbId(Integer tmdbId) {
+    this.tmdbId = tmdbId;
   }
 
   public Integer getYear() {

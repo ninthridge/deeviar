@@ -57,7 +57,8 @@ public class HealthResource {
       map.put("incompatibleDependencies", incompatibleDependencies);
       
       map.put("connectivity", Pinger.ping("yahoo.com") || Pinger.ping("facebook.com") || Pinger.ping("google.com"));
-      map.put("omdbapiConnectivity", Pinger.ping("omdbapi.com"));
+      //map.put("omdbapiConnectivity", Pinger.ping("omdbapi.com"));
+      map.put("tmdbConnectivity", Pinger.ping("tmdb.org"));
       map.put("schedulesDirectConnectivity", Pinger.ping("schedulesdirect.org"));
       
       return new ResponseEntity<>(map, HttpStatus.OK);

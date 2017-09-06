@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.ninthridge.deeviar.library.scraper.EpisodeScraper;
 import com.ninthridge.deeviar.model.Episode;
@@ -15,7 +14,6 @@ import com.ninthridge.omdbclient.exception.OmdbException;
 import com.ninthridge.omdbclient.model.OmdbVideo;
 import com.ninthridge.omdbclient.model.Type;
 
-@Service("episodeScraper")
 public class OmdbEpisodeScraper extends OmdbContentScraper implements EpisodeScraper {
 
   protected final Log log = LogFactory.getLog(getClass());
