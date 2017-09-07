@@ -4,12 +4,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.ninthridge.deeviar.library.scraper.impl.tmdb.TmdbSeriesScraper;
 import com.ninthridge.deeviar.model.Series;
 import com.ninthridge.deeviar.model.id.SeriesId;
 
+@Ignore
 public class TmdbSeriesScraperTest {
 
   private TmdbSeriesScraper tmdbSeriesScraper = new TmdbSeriesScraper();
