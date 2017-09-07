@@ -3,11 +3,6 @@ $(document).ready(function() {
     '': function() {
       displayDashboard();    
     },
-    'content': function() {
-      $('#navbar ul li').removeClass('active');
-      $('#contentNav').addClass('active');
-      displayContentConfig();
-    },
     'devices': function() {
       $('#navbar ul li').removeClass('active');
       $('#devicesNav').addClass('active');
@@ -94,8 +89,4 @@ $(document).ready(function() {
     event.preventDefault();
     submitChannels();
   });
-  $("#maincontainer").on('submit', '#contentconfigform', function(event) {
-	event.preventDefault();
-	submitContentConfig();
-  })
 });

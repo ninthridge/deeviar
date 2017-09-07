@@ -28,8 +28,8 @@ function displayDashboard() {
       toastr.error("Unable to connect to schedulesdirect.org", "Connectivity Error", {"timeOut": "300000", "extendedTimeOut": "100000", "closeButton": true, "positionClass": "toast-bottom-full-width"});
     }
     
-    if(!health.omdbapiConnectivity) {
-      toastr.error("Unable to connect to omdbapi.com", "Connectivity Error", {"timeOut": "300000", "extendedTimeOut": "100000", "closeButton": true, "positionClass": "toast-bottom-full-width"});
+    if(!health.tmdbConnectivity) {
+      toastr.error("Unable to connect to tmdb.org", "Connectivity Error", {"timeOut": "300000", "extendedTimeOut": "100000", "closeButton": true, "positionClass": "toast-bottom-full-width"});
     }
   });
 }

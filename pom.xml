@@ -87,11 +87,6 @@
       <artifactId>jcifs</artifactId>
       <version>${jcifs.version}</version>
     </dependency>
-    <dependency>
-      <groupId>com.ninthridge</groupId>
-      <artifactId>omdbclient</artifactId>
-      <version>${omdbclient.version}</version>
-    </dependency>
     
     <dependency>
       <groupId>commons-fileupload</groupId>
