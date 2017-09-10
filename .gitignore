@@ -7,3 +7,4 @@ target/
 .project
 maven-eclipse.xml
 hs_err_pid*
+src/main/resources/keys.properties

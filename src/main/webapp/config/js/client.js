@@ -183,32 +183,6 @@ function saveGrabberConfig(grabberConfig, callback) {
   });
 }
 
-function getContentConfig(callback) {
-  $.ajax({
-    url: '/api/content',
-    type: 'GET',
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
-    success: function(contentConfig, status, jqXHR) {
-      callback(contentConfig);
-    }
-  });
-}
-
-function saveContentConfig(configConfig, callback) {
-  $.ajax({
-    url: '/api/content',
-    type: 'PUT',
-    contentType: "application/json; charset=utf-8",
-    data: JSON.stringify(configConfig),
-    dataType: "json",
-    success: function(data, status, jqXHR) {
-      toastr.success('Your content configuration has been saved');
-      callback();
-    }
-  });
-}
-
 function getGrabberLineups(countryCode, postalCode, callback) {
   $.ajax({
     url: '/api/grabber/lineups/' + countryCode + '/' + postalCode,

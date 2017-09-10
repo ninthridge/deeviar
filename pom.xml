@@ -4,7 +4,7 @@
   <groupId>com.ninthridge</groupId>
   <artifactId>deeviar</artifactId>
   <packaging>jar</packaging>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
   <name>Deeviar</name>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -87,11 +87,6 @@
       <artifactId>jcifs</artifactId>
       <version>${jcifs.version}</version>
     </dependency>
-    <dependency>
-      <groupId>com.ninthridge</groupId>
-      <artifactId>omdbclient</artifactId>
-      <version>${omdbclient.version}</version>
-    </dependency>
     
     <dependency>
       <groupId>commons-fileupload</groupId>
@@ -103,6 +98,12 @@
       <groupId>org.jcodec</groupId>
       <artifactId>jcodec-javase</artifactId>
       <version>${jcodec.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.omertron</groupId>
+      <artifactId>themoviedbapi</artifactId>
+      <version>4.3</version>
     </dependency>
     
     <dependency>

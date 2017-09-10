@@ -3,7 +3,6 @@ Deeviar is a digital video recorder that uses HDHomeRun devices as its input.  T
 To build and run, the following dependencies are required:
 * Java 7 or higher
 * Maven
-* https://github.com/ninthridge/omdbclient
 * https://github.com/ninthridge/schedulesdirectclient
 * hdhomerun_config
 * ffmpeg built with modules  --enable-gpl --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-pthreads --enable-version3 --enable-libsmbclient

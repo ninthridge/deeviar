@@ -68,7 +68,7 @@ public class DeviceService {
           persist = true;
         }
 
-        if (!persistedDevice.getDiscovered() != discoveredDevice.getDiscovered()) {
+        if (persistedDevice.getDiscovered() != discoveredDevice.getDiscovered()) {
           persistedDevice.setDiscovered(discoveredDevice.getDiscovered());
           persist = true;
         }
