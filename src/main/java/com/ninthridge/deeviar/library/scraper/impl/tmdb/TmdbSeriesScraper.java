@@ -18,7 +18,7 @@ public class TmdbSeriesScraper extends TmdbContentScraper implements SeriesScrap
       ResultList<TVBasic> results = null;
       try {
         results = tmdbClient.searchTV(series.getTitle(), null, null, series.getYear(), null);
-      } catch (MovieDbException e) {
+      } catch (Exception e) {
         log.error(e, e);
       }
       if(results != null && results.getResults() != null && !results.getResults().isEmpty()) {

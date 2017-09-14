@@ -18,7 +18,7 @@ public class TmdbMovieScraper extends TmdbContentScraper implements MovieScraper
       ResultList<MovieInfo> results = null;
       try {
         results = tmdbClient.searchMovie(movie.getTitle(), null, null, null, movie.getYear(), null, null);
-      } catch (MovieDbException e) {
+      } catch (Exception e) {
         log.error(e, e);
       }
       if(results != null && results.getResults() != null && !results.getResults().isEmpty()) {

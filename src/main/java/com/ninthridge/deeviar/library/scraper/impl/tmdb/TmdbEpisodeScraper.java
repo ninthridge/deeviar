@@ -19,7 +19,7 @@ public class TmdbEpisodeScraper extends TmdbContentScraper implements EpisodeScr
       TVEpisodeInfo tvEpisodeInfo = null;
       try {
         tvEpisodeInfo = tmdbClient.getEpisodeInfo(new Integer(series.getTmdbId()), episode.getSeason(), episode.getEpisode(), null);
-      } catch (MovieDbException e) {
+      } catch (Exception e) {
         log.error(e, e);
       }
       if(tvEpisodeInfo != null) {
