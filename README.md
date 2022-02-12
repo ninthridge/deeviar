@@ -1,6 +1,6 @@
 # Description
 
-Deeviar's front end software runs as a Roku channel. Deeviar's back end software runs on a computer within your home network that runs a Linux operating system.  To watch live tv, you will need an HDHomeRun device and it is highly recommended to set up a SchedulesDirect subscription.  Deeviar uses SchedulesDirect information to populate the interactive guide.
+Deeviar's front end software runs as a Roku channel. Deeviar's back end software runs on a computer within your home network that runs a Linux operating system.  To watch live tv, you will need an HDHomeRun device and it is highly recommended to set up a SchedulesDirect subscription.  Deeviar uses SchedulesDirect information to populate the interactive guide. Here's a link to a demo: https://youtu.be/icm93gCqugw
 
 To build and run, the following dependencies are required:
 * Java 7 or higher
@@ -8,6 +8,8 @@ To build and run, the following dependencies are required:
 * https://github.com/ninthridge/schedulesdirectclient
 * hdhomerun_config
 * ffmpeg built with modules  --enable-gpl --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-pthreads --enable-version3 --enable-libsmbclient
+
+
 
 # Build
 mvn clean install
