@@ -20,10 +20,10 @@ docker build -t ninthridge/deeviar:latest .
 sudo mkdir /opt/deeviar
 docker run -d -v /opt/deeviar:/opt/deeviar -v /etc/localtime:/etc/localtime:ro -v /etc/timezone:/etc/timezone:ro --net=host --restart always ninthridge/deeviar:latest
 
-(Please note that deeviar is only able to find hdhomerun devices if running on linux systems)
+(Please note that deeviar is only able to communicate with hdhomerun devices in docker the host system is Linux)
 
 # Configuration
-Visit http://<ip address>:7111
+Visit http://{ip address}:7111
 Click configuration in the upper right hand corner.  The default username is "admin".  The default password is "password".
 Click on "Devices & Schedules".
 If no devices are shown, then Deeviar was unable to discover an HDHomeRun device on your local network.
